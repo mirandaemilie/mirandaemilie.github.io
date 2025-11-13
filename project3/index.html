@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG County Restaurants</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/59e4ca5e11.js" crossorigin="anonymous"></script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> 
+  <body>
+    <div class="container">
+        <header>
+            <h1>Prince George's County Restaurants <i class="fa-solid fa-utensils" style="color: #ffffff;"></i></h1>
+            <p class="subheader">Don't know where to eat? Choose a restaurant safe for your belly.</p>
+        </header>
+
+        <nav class="view-selector">
+            <button class="view-button active" id="btn-cards" data-view="cards">Card View</button>
+            <button class="view-button" id="btn-table" data-view="table">Table View</button>
+            <button class="view-button" id="btn-categories" data-view="categories">Category View</button>
+            <button class="view-button" id="btn-stats" data-view="stats">Stats View</button>
+            <button class="view-button" id="btn-map" data-view="map">Map View</button>
+        </nav>
+
+        <main class="display-container">
+            <div id="data-display">
+                <div class="loading">Loading restaurant data...</div>
+            </div>
+        </main>
+
+        <section class="asst-box">
+            
+            <h3><a href="https://github.com/emiliemirandar/emiliemirandar.github.io/tree/ee5163ee1e1e3f6fa733bbaf7a3e3240cedce0cb/project2_differentviews/asst_2_restaurants">Github</a></h3>
+        </section>
+    </div>
+    <script type="module" src="./script.js" defer></script>
+</body>
+</html>
