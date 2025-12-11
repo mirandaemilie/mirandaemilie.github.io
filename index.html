@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emilie Miranda INST630</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<title>Saturn's Moons</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://use.typekit.net/ays6tqj.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/ays6tqj.css">
+<link href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>INST630 Assignments Hub</h1>
-            <p>Links to all assignments</p>
-        </header>
+<header>
+<div class="header-text">
+<h1>SATURN</h1>
+<h2>The Jewel of the Solar System's 274 Moons</h2>
+</div>
+<p>Discover Saturn's intriguing system of various sallelites.</p>
+</header>
 
-        <!-- Container -->
-        <section class="method-section">
-            <h2>Choose the Assignment</h2>         
-            <div class="demo-area">
-                <div class="result-area">
-                <p><a href="https://emiranda-project1.netlify.app/">Project 1: Make an Ugly Page Cute</a></p>
-                <p><a href="https://emiliemirandar.github.io/INST-630-W5/">W5: Array Methods for Data</a></p>
-                <p><a href="https://emiliemirandar.github.io/tutorial_6_api/">W6: Async/Await</a></p>
-                <p><a href="https://emiliemirandar.github.io/tutorial_7_views/">W7: Model View Controller</a></p>
-                <p><a href="https://emiliemirandar.github.io/project2_differentviews/asst_2_restaurants/">Project 2: One Model, Four Views</a></p>
-                <p><a href="https://emiliemirandar.github.io/tutorial_8_external_libraries/">W8: External Libraries</a></p>
-                <p><a href="https://emiliemirandar.github.io/project3/">Project 3: Enhance a View</a></p>
-                </div>
+<nav class="view-nav" aria-label="View selector">
+    <div id="view-buttons" class="view-buttons">
+        <button class="view-button active" id="btn-cards" data-view="cards">Main</button>
+        <button class="view-button" id="btn-search" data-view="search">Database</button>
+    </div>
+  </nav>
+  </nav>
+
+<main class="display-container">
+            <div id="data-display">
+                <div class="loading">Loading Something Far Far Away...</div>
             </div>
-            
-        </section>
+        </main>
 
-    <script src="script.js"></script>
+  <script src="gsap.min.js"></script>
+  <script type="module" src="./script.js" defer></script>
+  
 </body>
 </html>
