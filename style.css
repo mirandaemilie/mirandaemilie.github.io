@@ -1,0 +1,924 @@
+/* BASE STYLES - Stealing the knowledge from project 3 lol */
+:root {
+  /* https://www.w3schools.com/css/css3_gradients.asp */
+  /* https://cssgradient.io/ */
+  --primary-color: #ffdc5e;
+  --secondary-color: #f8333c;
+  --accent-color1: #363537;
+  --accent-color2: #cfbf88;
+  --background: #191717;
+  --text-color: white;
+  --card-background: #ffffff;
+  --border-color: #ddd;
+
+  /* Cluster 1: Lines 1-3 (close) */
+  --orbit-radius-1: 100px;
+  --orbit-radius-2: 115px;
+  --orbit-radius-3: 130px;
+
+  /* Cluster 2: Lines 4-5 (close) */
+  --orbit-radius-4: 160px;
+  --orbit-radius-5: 180px;
+
+  /* Cluster 3: Line 6 (Titan, solitary but near previous cluster) */
+  --orbit-radius-6: 200px;
+
+  /* Cluster 4: Line 7 (Hyperion) */
+  --orbit-radius-7: 260px;
+
+  /* Cluster 5: Line 8 (Iapetus) */
+  --orbit-radius-8: 300px;
+}
+
+ * {
+    box-sizing: border-box;
+  }
+
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("Assets/Saturn\ No\ Background.png") no-repeat center top;
+  background-size: cover;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  font-family: "Tomorrow", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  background-position: center 80%, center top;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, cover;
+  color: var(--text-color);
+  background: radial-gradient(
+    circle at top center,
+    rgba(207, 191, 136, 0.2) 0%,
+    rgba(0, 0, 0, 1) 40%,
+    rgba(25, 23, 23, 1) 100%
+  );
+  background-color: var(--background);
+
+  padding: 1rem;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body h1 {
+  font-family: "nasalization", sans-serif;
+  font-weight: 600;
+  font-size: 100px;
+  font-style: normal;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+body h2 {
+  font-family: "nasalization", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--text-color);
+  margin: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.header-text h1 {
+  font-size: clamp(40px, 8vw, 100px);
+  color: var(--primary-color);
+  line-height: 1.1;
+}
+
+.header-text h2 {
+  font-size: clamp(14px, 3vw, 24px);
+  font-weight: 600;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+/* NAVIGATION */
+.view-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.view-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.view-button {
+  font-family: "Orbitron", sans-serif;
+  font-size: 16px;
+  background-color: var(--accent-color1);
+  color: white;
+  width: 120px;
+  height: 50px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-button.active {
+  background: var(--primary-color);
+  color: var(--background);
+  box-shadow: 0 0 15px rgba(255, 220, 94, 0.4);
+}
+
+.view-button:hover:not(.active) {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* MAIN DISPLAY */
+.display-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.saturn-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.hovermoon-header,
+.database-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* LAYOUT CONTAINER */
+.main-saturn-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap; 
+  gap: 2rem;
+  width: 100%;
+}
+
+/* SATURN SYSTEM (The Orbit Box) */
+.saturn-system-static {
+  width: 650px;
+  height: 650px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* PLANET & RINGS */
+.saturn-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.planet {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(
+    -50deg,
+    var(--accent-color2) 0%,
+    var(--accent-color1) 55%
+  );
+  border-radius: 50%;
+  box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(255, 220, 94, 0.15);
+  z-index: 15;
+}
+
+.rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 11;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 6px solid rgba(220, 200, 150, 0.35); 
+  box-sizing: border-box;
+  left: 50%;
+  top: 50%;
+}
+
+/* Ring Geometry */
+.ring-1 {
+  width: 140px;
+  height: 140px;
+  transform: translate(-50%, -50%) scaleY(0.97);
+}
+.ring-2 {
+  width: 160px;
+  height: 160px;
+  border-width: 10px;
+  opacity: 0.18;
+  transform: translate(-50%, -50%) scaleY(0.9);
+}
+.ring-3 {
+  width: 170px;
+  height: 190px;
+  border-width: 6px;
+  opacity: 1;
+  transform: translate(-50%, -50%) scaleY(0.9);
+}
+
+/* Orbits */
+.orbit-lines {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.orbit-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  transform: translate(-50%, -50%);
+}
+
+.line-1 {
+  width: calc(var(--orbit-radius-1) * 2);
+  height: calc(var(--orbit-radius-1) * 2);
+}
+.line-2 {
+  width: calc(var(--orbit-radius-2) * 2);
+  height: calc(var(--orbit-radius-2) * 2);
+}
+.line-3 {
+  width: calc(var(--orbit-radius-3) * 2);
+  height: calc(var(--orbit-radius-3) * 2);
+}
+.line-4 {
+  width: calc(var(--orbit-radius-4) * 2);
+  height: calc(var(--orbit-radius-4) * 2);
+}
+.line-5 {
+  width: calc(var(--orbit-radius-5) * 2);
+  height: calc(var(--orbit-radius-5) * 2);
+}
+.line-6 {
+  width: calc(var(--orbit-radius-6) * 2);
+  height: calc(var(--orbit-radius-6) * 2);
+}
+.line-7 {
+  width: calc(var(--orbit-radius-7) * 2);
+  height: calc(var(--orbit-radius-7) * 2);
+}
+.line-8 {
+  width: calc(var(--orbit-radius-8) * 2);
+  height: calc(var(--orbit-radius-8) * 2);
+}
+
+/* Moons */
+.moon-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--angle));
+  z-index: 50;
+}
+
+.moon-pos {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translateX(var(--radius));
+}
+
+.moon {
+  width: clamp(12px, 2.2vw, 25px);
+  height: clamp(12px, 2.2vw, 25px);
+  background: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  /* Rotation only here. Centering elsewhere */
+  transform: rotate(calc(var(--angle) * -1));
+  z-index: 51;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(255, 220, 94, 0.5);
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  z-index: 52;
+}
+
+/* Active State */
+.moon.active-moon {
+  background-color: var(--secondary-color) !important;
+  box-shadow: 0 0 15px var(--secondary-color), 0 0 30px var(--secondary-color);
+  z-index: 60;
+}
+
+.pulse {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: clamp(15px, 3vw, 30px);
+  height: clamp(15px, 3vw, 30px);
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  /* To center GSAP to moon position */
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Close button for Pop-Up */
+.close-panel-btn {
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  color: var(--secondary-color);
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  line-height: 1;
+  padding-bottom: 4px;
+  font-family: "Tomorrow", sans-serif;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* Info Panel */
+.moon-info-panel {
+  width: 100%;
+  max-width: 450px;
+  min-height: 300px;
+  background-color: rgba(25, 23, 23, 0.9);
+  border: 1px solid var(--background);
+  border-top: 2px solid var(--primary-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.moon-info-panel img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  background: #000;
+  border: 2px solid var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.moon-info-panel h3 {
+  font-family: "orbitron";
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.moon-content {
+  text-align: left;
+  width: 100%;
+}
+
+.moon-content p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+.moon-content strong {
+  color: var(--primary-color);
+}
+
+.loading {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+
+/* 
+VIEW 2: Search/Moon Database
+*/
+.stats-container {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  height: 70vh;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* Sidebar */
+.stats-sidebar {
+  background: rgba(30, 30, 30, 0.6);
+  border: 1px solid var(--accent-color1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* Scrollable List */
+#moon-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
+}
+
+#moon-list::-webkit-scrollbar {
+  width: 6px;
+}
+#moon-list::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+.moon-list-item {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: background 0.2s, padding-left 0.2s;
+  font-size: 1.1rem;
+}
+
+.moon-list-item:hover,
+.moon-list-item.active {
+  background: rgba(255, 220, 94, 0.1);
+  color: var(--primary-color);
+  padding-left: 1.5rem;
+  border-left: 4px solid var(--primary-color);
+}
+
+/* Main Stats Detail */
+.stats-details {
+  background: rgba(25, 23, 23, 0.8);
+  border: 1px solid var(--accent-color1);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Layout */
+.stats-header-group {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.stats-image-container {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--primary-color);
+  box-shadow: 0 0 20px rgba(255, 220, 94, 0.2);
+  flex-shrink: 0;
+}
+
+.stats-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stats-title-group h2 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.stats-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.stat-box h4 {
+  color: var(--secondary-color);
+  margin: 0 0 0.5rem 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.stat-box p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.stats-description {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  max-width: 800px;
+}
+
+.stats-placeholder-msg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #666;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loading {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  animation: blink 1.5s infinite;
+}
+
+/* Search Bar on Filter Row
+   This allows the search bar to be next to the menu button for filtering. It styles the search bar
+*/
+.filters-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+/* Search bar  */
+#moon-search {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 2px solid #deb846;
+  background: #111;
+  border-radius: 10px;
+  color: #fff;
+  outline: none;
+  font-family: "Tomorrow", sans-serif;
+}
+
+/* Filter Button (Menu Icon for Choices) */
+.filter-toggle {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  border: 2px solid #deb846;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #deb846;
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.filter-toggle:hover {
+  background: #222;
+}
+
+/* When filters open */
+.filter-toggle[aria-expanded="true"] {
+  background: #deb846;
+  color: #111;
+}
+
+.filter-toggle::before {
+  content: "≡";
+  font-size: 1.6rem;
+  line-height: 0;
+}
+
+/* Dropdown Panel */
+.filters-panel {
+  background: #111;
+  border: 2px solid #deb846;
+  border-radius: 12px;
+  margin: 8px 10px 0 10px;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 999;
+}
+
+.filters-panel[hidden] {
+  display: none !important;
+}
+
+/* Sort (Dropdown Items) */
+.sort-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 1rem;
+  color: #eee;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.sort-btn:hover {
+  background: rgba(222, 184, 70, 0.25);
+}
+
+.sort-btn.active {
+  background: rgba(222, 184, 70, 0.35);
+  font-weight: bold;
+  color: #deb846;
+}
+
+.active-filter-display {
+  margin: 8px 12px;
+  padding: 6px 12px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  background: rgba(222, 184, 70, 0.18);
+  border: 1px solid #deb846;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #deb846;
+}
+
+.active-filter-display .clear-filter {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 4px;
+}
+
+
+
+/* RESPONSIVE */
+@media (min-width: 989px) {
+  body {
+    padding: 2rem 4rem;
+  }
+
+  .main-saturn-container {
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .saturn-system-static {
+    margin-top: 0;
+  }
+
+  .moon-info-panel {
+    margin-top: 0;
+  }
+
+  .moon-info-panel img {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+/* Mobile + Tablet < 900px */
+@media (max-width: 980px) {
+
+  .main-saturn-container {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .saturn-system-static {
+    width: 100%;
+    height: 400px;
+    transform: scale(0.65);
+    margin: 0 auto;
+  }
+
+  .header-text h1 {
+    margin-bottom: 0.5rem;
+  }
+
+
+  .moon-info-panel {
+    display: none !important;
+    position: fixed !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: 400px;
+    z-index: 2000;
+    display: none; 
+    border: 1px solid var(--background);
+    border-top: 2px solid var(--primary-color);
+  }
+
+  .moon-info-panel.active {
+    display: flex !important;
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  .close-panel-btn {
+    display: flex;
+  }
+
+  .stats-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
+    height: auto;
+    gap: 1.5rem;
+  }
+
+  /* Sidebar expands to full width */
+  .stats-sidebar {
+    width: 100% !important;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  /* Search slightly bigger for fingers */
+  #moon-search {
+    padding: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  /* List items larger for fingers */
+  .moon-list-item {
+    padding: 1.2rem;
+    font-size: 1.25rem;
+  }
+
+  /* panel goes below list, full width */
+  .stats-details {
+    width: 100% !important;
+    height: auto;
+    padding: 1.5rem;
+  }
+
+  /* image shrinks */
+  .stats-header-group {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.2rem;
+  }
+
+  .stats-image-container {
+    width: 160px;
+    height: 160px;
+  }
+
+  .stats-title-group h2 {
+    font-size: 2.2rem;
+  }
+
+  .stats-meta {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-box p {
+    font-size: 1rem;
+  }
+
+  .stats-description {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+}
+
+/* SMALL PHONES */
+@media (max-width: 500px) {
+  .saturn-system-static {
+    transform: scale(0.45);
+    margin: -100px 0;
+  }
+
+  .moon::after {
+    width: 100px;
+    height: 100px;
+  }
+
+  .stats-sidebar {
+    max-height: 35vh;
+  }
+
+  .stats-header-group {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .stats-image-container {
+    width: 130px;
+    height: 130px;
+  }
+
+  .stats-title-group h2 {
+    font-size: 1.8rem;
+  }
+
+  .moon-list-item {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+}
+
+
+
+/* Biggest problems I had with css: breaking javascript, media query issues, tablet vs phone */
