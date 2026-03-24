@@ -1,0 +1,160 @@
+:root {
+  --off-white: #FDFFFC;
+  --main-color: #E40084;
+  --main-yellow: #FFBE0B; 
+  --main-blue: #390099; 
+  --main-periwinkle: #AB87FF; 
+  --main-violet: #520030; 
+  --main-silver: #F3F3F3; 
+  --main-medgray: #757575; 
+  --background: #191717;
+  --accent-pink: #FFEBF6; 
+}
+
+body {
+background-color: var(--background);
+font-family: Afacad;
+color: var(--off-white);
+display: flex;
+flex-direction: column;
+text-align: center;
+align-items: center;
+margin: 30px 0 0 0;
+}
+
+.main-image {
+background-color: var(--main-periwinkle);
+border-radius: 100px;
+border: 2px solid var(--off-white);
+height: 100px;
+width: 100px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+h1 {
+  font-size: 70px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+h2 {
+font-size: 18px;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+a {
+ display: block;
+ text-align: center;
+ justify-content: center;
+ align-content: center;
+ margin: 10px;
+ font-size: 20px;
+ border-radius: 20px; 
+ padding: 5px; 
+ text-decoration: none;
+ width: 30%;
+ border: none;
+ height: 50px; 
+ font-style: normal;
+ font-weight: 600;
+}
+
+/* https://cssgradient.io/ */
+a:hover {
+  background: var(--main-blue);
+  /* background: linear-gradient(155deg,rgba(171, 135, 255, 1) 0%, rgba(171, 135, 255, 1) 25%, rgba(57, 0, 153, 1) 21%, rgba(57, 0, 153, 1) 50%, rgba(57, 0, 153, 1) 75%, rgba(171, 135, 255, 1) 55%, rgba(171, 135, 255, 1) 100%); */
+  color: var(--off-white);
+  /* border: 2px solid var(--off-white); */
+}
+
+a:active {
+  background: var(--main-periwinkle);
+  color: var(--background);
+}
+
+.pink {
+  background-color: var(--main-color);
+  color: var(--off-white);
+}
+
+.yellow {
+  background-color: var(--main-yellow);
+  color: var(--background);
+}
+
+hr {
+  width: 50%;
+  margin: 20px 0 20px 0;
+}
+
+
+/* Footer */
+/* Footer */
+footer {
+  padding: 35px 0 35px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; 
+  background-color: var(--main-periwinkle);
+  color: var(--background);
+  margin-top: 30px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  vertical-align: top;
+  gap: 120px; 
+}
+
+.firstfooter-container {
+  display: flex; 
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+h5 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    margin: 0 30px 0 30px;
+    line-height: 1;
+  }
+
+  h2 {
+    margin: 20px 30px 0 30px;
+  }
+
+  p {
+    margin: 20px 30px 0 30px;
+  }
+
+  a {
+    width: 75%;
+  }
+
+  hr {
+    width: 75%;
+  }
+}
